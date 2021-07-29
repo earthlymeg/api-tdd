@@ -1,4 +1,4 @@
-import './card.css';
+import '../styles/card.css';
 
 function RecipeItem({ name, image }) {
   return (

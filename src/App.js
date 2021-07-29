@@ -1,8 +1,8 @@
 
 import React from "react";
 import './App.css'
-import RecipeItem from "./RecipeItem";
-import RecipeForm from "./Form"
+import RecipeItem from "./components/RecipeItem";
+import RecipeForm from "./components/Form"
 import axios from 'axios';
 import test from './test'
 class App extends React.Component {
