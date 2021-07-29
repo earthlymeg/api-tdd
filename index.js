@@ -17,17 +17,16 @@ app.post('/savedRecipes', (req,res) => {
       name: req.body.name,
       image: req.body.image
    })
-   console.log(req.body)
-   res.send(req.body)
 
-   // RecipeToSave.save((err,newRecipe) =>{
-   //    if (err) {
-   //       console.log(err)
-   //    } else {
-   //       console.log('successful save')   
-   //    }
+   newRecipe.save((err,newRecipe) =>{
+      if (err) {
+         console.log(err)
+      } else {
+         console.log('successful save')   
+      }
       
-   // })
+   })
+   
 })
 
 app.listen(3000, ()=> {
