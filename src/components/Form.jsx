@@ -19,6 +19,8 @@ class Form extends React.Component {
       this.props.searchForRecipe(this.state.recipeName)
 
   }
+
+
   render() {
     return (
       <div>

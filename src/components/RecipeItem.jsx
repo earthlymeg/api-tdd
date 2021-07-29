@@ -1,6 +1,6 @@
 import '../styles/card.css';
 
-function RecipeItem({ name, image }) {
+function RecipeItem({ name, image, handleSave }) {
   return (
   
 
@@ -10,7 +10,9 @@ function RecipeItem({ name, image }) {
         <h4>
           <b>{name}</b>
         </h4>
-        {/* <p>{description}</p> */}
+        <button
+        onClick={() => handleSave(name, image)}
+        >Save Recipe</button>
       </div>
     </div>
   );
