@@ -15,9 +15,19 @@ app.options('/savedRecipes', function (req, res) {
  });
 
 
-app.get('/', (req,res) => {
-   //save recipes to database
-  res.send('hello') 
+// app.get('/', (req,res) => {
+//    //save recipes to database
+//   res.send('hello') 
+// })
+
+app.get('/savedRecipes', (req,res) => {
+   RecipeToSave.find( (err, recipes) => {
+      if (err) {
+         console.log(err)
+      } else {
+         res.send(recipes)
+      }
+   })
 })
 
 

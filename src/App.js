@@ -5,6 +5,9 @@ import RecipeItem from "./components/RecipeItem";
 import RecipeForm from "./components/Form"
 import axios from 'axios';
 import test from './test'
+import SavedRecipes from './components/SavedRecipes'
+import {Route, BrowserRouter as Router} from 
+"react-router-dom";
 
 class App extends React.Component {
 
@@ -12,11 +15,20 @@ class App extends React.Component {
     super();
     this.state = {
       recipes: [],
+      savedRecipes: []
     }
     this.searchForRecipe = this.searchForRecipe.bind(this);
     this.handleSave = this.handleSave.bind(this);
   }
-
+  
+  //get recipes and populate SavedRecipes component
+  componentDidMount() {
+    axios.get('http://localhost:3000/savedRecipes')
+    .then(res => {
+      this.setState({savedRecipes: res.data})
+    })
+    .catch(err => console.log(err))
+  }
   searchForRecipe(ingredient) {
 
     axios.get(
@@ -45,6 +57,7 @@ class App extends React.Component {
 
   render() {
     return (
+      <Router>
       <div className="app">
 
         <div>
@@ -66,6 +79,15 @@ class App extends React.Component {
           )}
         </div>
       </div>
+{/* 
+        <Route path="/myrecipes" exact 
+        render=
+        {(this.state.savedRecipes) => 
+          <SavedRecipes {...this.state.savedRecipes}/>}
+        
+        /> */}
+    
+      </Router>
 
     )
   }
