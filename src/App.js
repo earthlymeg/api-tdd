@@ -5,12 +5,13 @@ import RecipeItem from "./components/RecipeItem";
 import RecipeForm from "./components/Form"
 import axios from 'axios';
 import test from './test'
+
 class App extends React.Component {
 
   constructor() {
     super();
     this.state = {
-      recipes: [], 
+      recipes: [],
     }
     this.searchForRecipe = this.searchForRecipe.bind(this);
     this.handleSave = this.handleSave.bind(this);
@@ -39,23 +40,27 @@ class App extends React.Component {
         console.log('successful post from front end')
       })
       .catch(err => console.log('err at front', err))
-    
+
   }
 
   render() {
     return (
       <div className="app">
+
         <div>
           Find your favorite recipes
         </div>
         <RecipeForm searchForRecipe={this.searchForRecipe} />
+        <div>
+          <button>Your Saved Recipes</button>
+        </div>
         <div className="card-container">
           {this.state.recipes.length > 0 && this.state.recipes.map(recipe => {
-            return <RecipeItem 
-            key={recipe.id}
-            name={recipe.title} 
-            image={recipe.image} 
-            handleSave={this.handleSave}
+            return <RecipeItem
+              key={recipe.id}
+              name={recipe.title}
+              image={recipe.image}
+              handleSave={this.handleSave}
             />
           }
           )}
