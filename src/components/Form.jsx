@@ -11,11 +11,12 @@ class Form extends React.Component {
   }
 
   handleChange(e) {
-    this.setState({ recipeName: e.target.value });
+    this.setState({ recipeName: e.target.value }, () => console.log(this.state));
   }
 
   handleSubmit(event) {
       event.preventDefault();
+      // alert(this.state.recipeName)
       this.props.searchForRecipe(this.state.recipeName)
 
   }

@@ -23,26 +23,26 @@ class App extends React.Component {
   
   //get recipes and populate SavedRecipes component
   componentDidMount() {
-    axios.get('http://localhost:3000/savedRecipes')
+    axios.get('http://localhost:3001/savedRecipes')
     .then(res => {
-      this.setState({savedRecipes: res.data})
+      this.setState({savedRecipes: res.data}, () => console.log(this.state.savedRecipes))
     })
     .catch(err => console.log(err))
   }
   searchForRecipe(ingredient) {
-
+    
     axios.get(
       `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${ingredient}&apiKey=${process.env.REACT_APP_SPOONACULAR_API_KEY}
     `)
       //take each res.data and create a card
       .then(res => this.setState({ recipes: res.data }))
       .catch(err => console.log(err))
-    // alert('rendering recipes!')
-
+    
+    
   }
 
   handleSave(recipeName, recipeImage) {
-    axios.post('http://localhost:3000/savedRecipes',
+    axios.post('http://localhost:3001/savedRecipes',
       {
         name: recipeName,
         image: recipeImage
