@@ -6,7 +6,7 @@ function SavedRecipeItem({ name, image, id, handleDelete }) {
 
     <div class="card">
       
-      {console.log(id)}
+  
       <img src={image} alt=""/>
       <div class="container">
         <h4>

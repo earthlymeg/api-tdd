@@ -52,14 +52,10 @@ app.post('/savedRecipes', (req,res) => {
 app.delete('/savedRecipes/:id', (req,res) => {
    let id = req.params.id;
    
-   RecipeToSave.deleteOne({id: id}, (err, success) => {
-      if (err) {
-         res.send(err);
-         console.log(err)
-      } else {
-         res.send('successful delete')
-      }
-   });
+   RecipeToSave.deleteOne({_id: id})
+   .then( () => res.send(`successfully deleted ${id}`))
+   .catch(err => console.log(err))
+
 
 })
 

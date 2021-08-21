@@ -14,7 +14,7 @@ class SavedRecipes extends React.Component {
   }
 
   componentDidMount() {
-
+    console.log('making a get request!')
     axios.get('http://localhost:3001/savedRecipes')
     .then((res) => this.setState({recipes: res.data}))
     .catch(err => console.log(err))
