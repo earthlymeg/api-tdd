@@ -6,8 +6,8 @@ import RecipeForm from "./components/Form"
 import axios from 'axios';
 import test from './test'
 import SavedRecipes from './components/SavedRecipes'
-import {Route, BrowserRouter as Router} from 
-"react-router-dom";
+import { Route, BrowserRouter as Router } from
+  "react-router-dom";
 
 class App extends React.Component {
 
@@ -19,26 +19,20 @@ class App extends React.Component {
     }
     this.searchForRecipe = this.searchForRecipe.bind(this);
     this.handleSave = this.handleSave.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
-  
-  //get recipes and populate SavedRecipes component
-  componentDidMount() {
-    axios.get('http://localhost:3001/savedRecipes')
-    .then(res => {
-      this.setState({savedRecipes: res.data}, () => console.log(this.state.savedRecipes))
-    })
-    .catch(err => console.log(err))
-  }
+
+
   searchForRecipe(ingredient) {
-    
+
     axios.get(
       `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${ingredient}&apiKey=${process.env.REACT_APP_SPOONACULAR_API_KEY}
     `)
       //take each res.data and create a card
       .then(res => this.setState({ recipes: res.data }))
       .catch(err => console.log(err))
-    
-    
+
+
   }
 
   handleSave(recipeName, recipeImage) {
@@ -55,38 +49,48 @@ class App extends React.Component {
 
   }
 
+  handleDelete(id) {
+    axios.delete(`http://localhost:3001/savedRecipes/${id}`)
+    .then(res => console.log(`deleted doc with id ${id}`))
+    .catch(err => console.log(err))
+  
+    // alert(`deleting ${id}`)
+  }
+
+
   render() {
     return (
       <Router>
-      <div className="app">
+        <div className="app">
 
-        <div>
-          Find your favorite recipes
+          {/* <div>
+            Find your favorite recipes
+          </div>
+          <RecipeForm searchForRecipe={this.searchForRecipe} />
+          <div>
+            <button>Your Saved Recipes</button>
+          </div>
+          <div className="card-container">
+            {this.state.recipes.length > 0 && this.state.recipes.map(recipe => {
+              return <RecipeItem
+                key={recipe.id}
+                name={recipe.title}
+                image={recipe.image}
+                handleSave={this.handleSave}
+              />
+            }
+            )}
+          </div> */}
+          <SavedRecipes handleDelete={this.handleDelete}/>
         </div>
-        <RecipeForm searchForRecipe={this.searchForRecipe} />
-        <div>
-          <button>Your Saved Recipes</button>
-        </div>
-        <div className="card-container">
-          {this.state.recipes.length > 0 && this.state.recipes.map(recipe => {
-            return <RecipeItem
-              key={recipe.id}
-              name={recipe.title}
-              image={recipe.image}
-              handleSave={this.handleSave}
-            />
-          }
-          )}
-        </div>
-      </div>
-{/* 
-        <Route path="/myrecipes" exact 
+
+        {/* <Route path="/myrecipes" exact 
         render=
         {(this.state.savedRecipes) => 
           <SavedRecipes {...this.state.savedRecipes}/>}
         
         /> */}
-    
+
       </Router>
 
     )

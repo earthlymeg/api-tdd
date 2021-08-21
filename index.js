@@ -49,6 +49,20 @@ app.post('/savedRecipes', (req,res) => {
    
 })
 
+app.delete('/savedRecipes/:id', (req,res) => {
+   let id = req.params.id;
+   
+   RecipeToSave.deleteOne({id: id}, (err, success) => {
+      if (err) {
+         res.send(err);
+         console.log(err)
+      } else {
+         res.send('successful delete')
+      }
+   });
+
+})
+
 app.listen(3001, ()=> {
    console.log('listening on 3001')
 })
