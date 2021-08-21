@@ -19,7 +19,7 @@ class App extends React.Component {
     }
     this.searchForRecipe = this.searchForRecipe.bind(this);
     this.handleSave = this.handleSave.bind(this);
-    this.handleDelete = this.handleDelete.bind(this);
+    
   }
 
 
@@ -49,13 +49,7 @@ class App extends React.Component {
 
   }
 
-  handleDelete(id) {
-    axios.delete(`http://localhost:3001/savedRecipes/${id}`)
-    .then(res => console.log(`deleted doc with id ${id}`))
-    .catch(err => console.log(err))
-  
-    // alert(`deleting ${id}`)
-  }
+
 
 
   render() {
