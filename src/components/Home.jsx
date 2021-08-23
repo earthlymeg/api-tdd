@@ -1,5 +1,5 @@
 import React from "react";
-
+import '../styles/home.css'
 import RecipeForm from "./Form";
 import RecipeItem from "./RecipeItem";
 import axios from 'axios';
@@ -41,7 +41,8 @@ class Home extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="home">
+        <h1>What do you want to cook today?</h1>
         <RecipeForm searchForRecipe={this.searchForRecipe} />
         <div><Link to="/savedRecipes"><button>Your Saved Recipes</button></Link>
 

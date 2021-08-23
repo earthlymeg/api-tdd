@@ -1,5 +1,5 @@
 import React from "react";
-
+import '../styles/form.css'
 class Form extends React.Component {
   constructor(props) {
     super();
@@ -25,9 +25,10 @@ class Form extends React.Component {
   render() {
     return (
       <div>
-        <form>
+        <form >
           {/* store recipe name in state */}
           <input
+          className="search"
             type="text"
             placeholder="Recipe Name"
             onChange={this.handleChange}
