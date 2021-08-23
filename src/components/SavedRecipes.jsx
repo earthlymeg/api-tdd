@@ -3,6 +3,8 @@
 import React from "react";
 import SavedRecipeItem from "./SavedRecipeItem";
 import axios from "axios";
+import { Link } from
+  "react-router-dom";
 class SavedRecipes extends React.Component {
   constructor(props) {
     super(props);
@@ -34,6 +36,8 @@ class SavedRecipes extends React.Component {
   }
   render() {
     return (
+      <div>
+        <Link to="/home"><button>Home</button></Link>
       <div className="card-container">
         {this.state.recipes.length > 0 &&
           this.state.recipes.map((recipe) => {
@@ -47,6 +51,7 @@ class SavedRecipes extends React.Component {
               />
             );
           })}
+      </div>
       </div>
     );
   }

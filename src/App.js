@@ -1,89 +1,34 @@
 
 import React from "react";
 import './App.css'
-import RecipeItem from "./components/RecipeItem";
-import RecipeForm from "./components/Form"
-import axios from 'axios';
-import test from './test'
+import Home from './components/Home'
 import SavedRecipes from './components/SavedRecipes'
-import { Route, BrowserRouter as Router } from
+import { Route, BrowserRouter as Router, Switch } from
   "react-router-dom";
 
 class App extends React.Component {
 
-  constructor() {
-    super();
-    this.state = {
-      recipes: [],
-      savedRecipes: []
-    }
-    this.searchForRecipe = this.searchForRecipe.bind(this);
-    this.handleSave = this.handleSave.bind(this);
-    
-  }
 
 
-  searchForRecipe(ingredient) {
-
-    axios.get(
-      `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${ingredient}&apiKey=${process.env.REACT_APP_SPOONACULAR_API_KEY}
-    `)
-      //take each res.data and create a card
-      .then(res => this.setState({ recipes: res.data }))
-      .catch(err => console.log(err))
-
-
-  }
-
-  handleSave(recipeName, recipeImage) {
-    axios.post('http://localhost:3001/savedRecipes',
-      {
-        name: recipeName,
-        image: recipeImage
-      }
-    )
-      .then(r => {
-        console.log('successful post from front end')
-      })
-      .catch(err => console.log('err at front', err))
-
-  }
-
-
-
+  // <Route path="/" component={Home} />
+  //  <Route exact path="/login" component={Login} />
 
   render() {
     return (
       <Router>
         <div className="app">
+          {/* <Home /> */}
 
-          {/* <div>
-            Find your favorite recipes
-          </div>
-          <RecipeForm searchForRecipe={this.searchForRecipe} />
-          <div>
-            <button>Your Saved Recipes</button>
-          </div>
-          <div className="card-container">
-            {this.state.recipes.length > 0 && this.state.recipes.map(recipe => {
-              return <RecipeItem
-                key={recipe.id}
-                name={recipe.title}
-                image={recipe.image}
-                handleSave={this.handleSave}
-              />
-            }
-            )}
-          </div> */}
-          <SavedRecipes handleDelete={this.handleDelete}/>
+
+          <Switch>
+            <Route exact path="/savedRecipes" component={SavedRecipes} />
+            {/* <SavedRecipes /> */}
+            <Route path="*" component={Home} />
+
+          </Switch>
         </div>
 
-        {/* <Route path="/myrecipes" exact 
-        render=
-        {(this.state.savedRecipes) => 
-          <SavedRecipes {...this.state.savedRecipes}/>}
-        
-        /> */}
+
 
       </Router>
 
