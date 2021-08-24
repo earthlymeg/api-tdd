@@ -43,6 +43,7 @@ class Home extends React.Component {
   render() {
     return (
       <div className="home">
+        <div className="home-wrapper">
         <h1>What do you want to cook today?</h1>
         <RecipeForm searchForRecipe={this.searchForRecipe} />
         <div>
@@ -61,6 +62,7 @@ class Home extends React.Component {
                 />
               );
             })}
+        </div>
         </div>
         <Footer/>
       </div>

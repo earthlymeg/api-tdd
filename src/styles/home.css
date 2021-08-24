@@ -1,13 +1,24 @@
-body {
-    min-height: 100vh;
+html, body {
+    /* height: 100%; */
+    margin: 0;
     
 }
 
 
-.home {
+
+.home-wrapper {
     display: flex;
+    min-height: 90vh;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     margin: .5rem;
+    /* justify-content: center; */
+    align-items: center;
+    /* margin: .5rem; */
+    
+    
+}
+
+.card-container {
+    margin-top: 1rem;
+    margin-bottom: 4rem;
 }

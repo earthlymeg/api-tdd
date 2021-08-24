@@ -1,6 +1,6 @@
 
 import React from "react";
-
+import './App.css'
 import Home from './components/Home'
 import SavedRecipes from './components/SavedRecipes'
 import { Route, BrowserRouter as Router, Switch } from
@@ -12,12 +12,12 @@ class App extends React.Component {
     return (
       <Router>
         <div className="app">
-          {/* <Home /> */}
+          
 
 
           <Switch>
             <Route exact path="/savedRecipes" component={SavedRecipes} />
-            {/* <SavedRecipes /> */}
+            
             <Route path="*" component={Home} />
 
           </Switch>

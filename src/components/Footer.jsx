@@ -5,10 +5,11 @@ import { Link } from
 function Footer() {
 
     return(
-        <div className="footer">
+        // <div >
+            <footer className="footer">
             <Link to="/savedRecipes"><BsBookmark className="bookmark"/></Link>
-            
-        </div>
+            </footer>
+        // </div>
     )
 
 }

@@ -1,6 +1,12 @@
 .footer {
-    position: fixed;
-    bottom: 0;
+   
+    /* background-color: rgba(128, 128, 128, 0.109); */
+    /* background-color: blue; */
+    width: 100vw;
+    height: 7vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .bookmark{
