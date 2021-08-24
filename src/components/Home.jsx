@@ -43,7 +43,7 @@ class Home extends React.Component {
     return (
       <div className="home">
         <div className="home-wrapper">
-        <h1>What do you want to cook today?</h1>
+        <h2>What do you want to cook today?</h2>
         <RecipeForm searchForRecipe={this.searchForRecipe} />
         <div>
 
