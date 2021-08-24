@@ -1,12 +1,16 @@
 import '../styles/card.css';
+import {AiFillHeart, AiOutlineHeart} from 'react-icons/ai'
 
 function RecipeItem({ name, image, handleSave }) {
   return (
   
 
-    <div class="card">
+    <div className="card">
+      <div className="img-overlay">
       <img src={image} alt=""/>
-      <div class="container">
+      <AiOutlineHeart className="outline-heart"/>
+      </div>
+      <div className="container">
         <h4>
           <b>{name}</b>
         </h4>

@@ -12,19 +12,11 @@ class App extends React.Component {
     return (
       <Router>
         <div className="app">
-          
-
-
           <Switch>
             <Route exact path="/savedRecipes" component={SavedRecipes} />
-            
             <Route path="*" component={Home} />
-
           </Switch>
         </div>
-
-
-
       </Router>
 
     )

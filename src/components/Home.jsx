@@ -4,13 +4,12 @@ import RecipeForm from "./Form";
 import RecipeItem from "./RecipeItem";
 import axios from 'axios';
 import Footer from './Footer'
-import { Link } from
-  "react-router-dom";
+import test from '../test'
 class Home extends React.Component {
   constructor() {
     super();
     this.state = {
-      recipes: [],
+      recipes: test,
       savedRecipes: [],
     };
     this.searchForRecipe = this.searchForRecipe.bind(this);
