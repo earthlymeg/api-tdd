@@ -1,8 +1,25 @@
+.form {
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center; */
+    width: 100%;
+    
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+}
+
 .search {
- height: 3rem;   
- width: 80%;
+ height: 3.5rem;   
+ /* width: 18rem; */
  border-radius: 15px;
  background-color: rgba(128, 128, 128, 0.199);
  border: none;
  outline: none;
+ padding-left: 1rem;
+ font-size: 1rem;
 }
+

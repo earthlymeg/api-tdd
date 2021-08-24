@@ -1,5 +1,6 @@
 import React from "react";
 import '../styles/form.css'
+import {FiSearch} from 'react-icons/fi'
 class Form extends React.Component {
   constructor(props) {
     super();
@@ -24,8 +25,8 @@ class Form extends React.Component {
 
   render() {
     return (
-      <div>
-        <form >
+      <div className="form">
+        <form>
           {/* store recipe name in state */}
           <input
           className="search"
@@ -34,9 +35,11 @@ class Form extends React.Component {
             onChange={this.handleChange}
           ></input>
           {/* on click, make api call at parent */}
-          <button type="submit"
+          {/* <button type="submit"
           onClick={e => this.handleSubmit(e)}
-          >Search</button>
+          >Search</button> */}
+          <FiSearch
+          onClick={e => this.handleSubmit(e)}/>
         </form>
       </div>
     );

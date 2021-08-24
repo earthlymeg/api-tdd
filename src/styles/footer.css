@@ -1,0 +1,10 @@
+.footer {
+    position: fixed;
+    bottom: 0;
+}
+
+.bookmark{
+    height:2.5rem;
+    width: 2.5rem;
+    color:#FB7462    ;
+}

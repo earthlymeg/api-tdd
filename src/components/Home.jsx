@@ -3,6 +3,7 @@ import '../styles/home.css'
 import RecipeForm from "./Form";
 import RecipeItem from "./RecipeItem";
 import axios from 'axios';
+import Footer from './Footer'
 import { Link } from
   "react-router-dom";
 class Home extends React.Component {
@@ -44,7 +45,7 @@ class Home extends React.Component {
       <div className="home">
         <h1>What do you want to cook today?</h1>
         <RecipeForm searchForRecipe={this.searchForRecipe} />
-        <div><Link to="/savedRecipes"><button>Your Saved Recipes</button></Link>
+        <div>
 
           
         </div>
@@ -61,6 +62,7 @@ class Home extends React.Component {
               );
             })}
         </div>
+        <Footer/>
       </div>
     );
   }
