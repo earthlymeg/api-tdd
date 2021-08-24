@@ -35,9 +35,7 @@ class Form extends React.Component {
             onChange={this.handleChange}
           ></input>
           {/* on click, make api call at parent */}
-          {/* <button type="submit"
-          onClick={e => this.handleSubmit(e)}
-          >Search</button> */}
+         
           <FiSearch
           className="magnifying-glass"
           onClick={e => this.handleSubmit(e)}/>
