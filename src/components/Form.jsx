@@ -39,6 +39,7 @@ class Form extends React.Component {
           onClick={e => this.handleSubmit(e)}
           >Search</button> */}
           <FiSearch
+          className="magnifying-glass"
           onClick={e => this.handleSubmit(e)}/>
         </form>
       </div>
