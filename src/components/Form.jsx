@@ -12,7 +12,7 @@ class Form extends React.Component {
   }
 
   handleChange(e) {
-    this.setState({ recipeName: e.target.value }, () => console.log(this.state));
+    this.setState({ recipeName: e.target.value });
   }
 
   handleSubmit(event) {
