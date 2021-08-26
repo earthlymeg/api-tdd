@@ -11,13 +11,16 @@ function RecipeItem({ name, image, handleSave, id, favorited }) {
   
 
     <div className="card">
-      {/* {console.log(id)} */}
+      {console.log(name, favorited)}
       <div className="img-overlay">
       <img src={image} alt=""/>
-      <AiOutlineHeart className="outline-heart"
+      {!favorited ? <AiOutlineHeart className="outline-heart"
       
       onClick={() => handleSave(name, image, id)}
-      />
+      /> : <AiFillHeart
+      className="outline-heart"
+      />}
+      
       </div>
       <div className="container">
         <h4>

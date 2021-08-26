@@ -16,13 +16,18 @@ class Home extends React.Component {
   }
 
   searchForRecipe(ingredient) {
+
+    let storageFavorited = [];
+    if (localStorage.getItem("favorited")) {
+      storageFavorited = JSON.parse(localStorage.getItem('favorited'));
+    }
     axios
       .get(
         `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${ingredient}&apiKey=${process.env.REACT_APP_SPOONACULAR_API_KEY}
         `
       )
       //take each res.data and create a card/save to state
-      
+    
       
       //check if id exists in local storage, if so add favorited 
       .then((res) => 
@@ -31,8 +36,8 @@ class Home extends React.Component {
       //checkt is res.data.id exists in local storage, if yes add 
         //else 
         res.data.forEach( recipe => {
-          
-          if (this.state.saved.includes(recipe.id)) {
+          // console.log(storageFavorited)
+          if (storageFavorited.includes(recipe.id)) {
             //it does, favorited = true
             let favedRecipe = recipe;
             favedRecipe['favorited'] = true;
@@ -95,7 +100,7 @@ class Home extends React.Component {
         <div className="card-container">
           {this.state.recipes.length > 0 &&
             this.state.recipes.map((recipe) => {
-              
+              // console.log(recipe)
               return (
                 <RecipeItem
                   key={recipe.id}
@@ -103,6 +108,7 @@ class Home extends React.Component {
                   image={recipe.image}
                   handleSave={this.handleSave}
                   id={recipe.id}
+                  favorited={recipe.favorited}
                 />
               );
             })}
