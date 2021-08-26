@@ -9,8 +9,7 @@ class Home extends React.Component {
   constructor() {
     super();
     this.state = {
-      recipes: [],
-      saved: []
+      recipes: []
     };
     this.searchForRecipe = this.searchForRecipe.bind(this);
     this.handleSave = this.handleSave.bind(this);
@@ -25,11 +24,11 @@ class Home extends React.Component {
       //take each res.data and create a card/save to state
       
       
-      //check if id exists in saved, if so add favorited 
+      //check if id exists in local storage, if so add favorited 
       .then((res) => 
       {
 
-      //checkt is res.data.id exists in saved, i
+      //checkt is res.data.id exists in local storage, if yes add 
         //else 
         res.data.forEach( recipe => {
           
