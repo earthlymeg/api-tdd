@@ -1,25 +1,24 @@
 import React from "react";
-import '../styles/home.css'
+import "../styles/home.css";
 import RecipeForm from "./Form";
 import RecipeItem from "./RecipeItem";
-import axios from 'axios';
-import Footer from './Footer'
-import test from '../test'
+import axios from "axios";
+import Footer from "./Footer";
+import test from "../test";
 class Home extends React.Component {
   constructor() {
     super();
     this.state = {
-      recipes: []
+      recipes: [],
     };
     this.searchForRecipe = this.searchForRecipe.bind(this);
     this.handleSave = this.handleSave.bind(this);
   }
 
   searchForRecipe(ingredient) {
-
     let storageFavorited = [];
     if (localStorage.getItem("favorited")) {
-      storageFavorited = JSON.parse(localStorage.getItem('favorited'));
+      storageFavorited = JSON.parse(localStorage.getItem("favorited"));
     }
     axios
       .get(
@@ -27,35 +26,28 @@ class Home extends React.Component {
         `
       )
       //take each res.data and create a card/save to state
-    
-      
-      //check if id exists in local storage, if so add favorited 
-      .then((res) => 
-      {
 
-      //checkt is res.data.id exists in local storage, if yes add 
-        //else 
-        res.data.forEach( recipe => {
+      //check if id exists in local storage, if so add favorited
+      .then((res) => {
+        //checkt is res.data.id exists in local storage, if yes add
+        //else
+        res.data.forEach((recipe) => {
           // console.log(storageFavorited)
           if (storageFavorited.includes(recipe.id)) {
             //it does, favorited = true
             let favedRecipe = recipe;
-            favedRecipe['favorited'] = true;
+            favedRecipe["favorited"] = true;
             let joined = this.state.recipes.concat(favedRecipe);
-            this.setState({recipes: joined})
+            this.setState({ recipes: joined });
           } else {
             let unfavedRecipe = recipe;
-            unfavedRecipe['favorited'] = false;
+            unfavedRecipe["favorited"] = false;
             let joined = this.state.recipes.concat(unfavedRecipe);
-            this.setState({recipes: joined})
+            this.setState({ recipes: joined });
           }
-          
-        })
-
-        
+        });
       })
-      
-      
+
       // this.setState({ recipes: res.data }))
       .catch((err) => console.log(err));
   }
@@ -63,23 +55,19 @@ class Home extends React.Component {
   handleSave(recipeName, recipeImage, id) {
     //save copy of saved recipes to state
     if (localStorage.getItem("favorited")) {
-      let joined = JSON.parse(localStorage.getItem('favorited'));
-      let newJoin = joined.concat(id)
-      localStorage.favorited = JSON.stringify(newJoin)
-      
-   
+      let joined = JSON.parse(localStorage.getItem("favorited"));
+      let newJoin = joined.concat(id);
+      localStorage.favorited = JSON.stringify(newJoin);
     } else {
       let faveObj = [id];
-      localStorage.favorited = JSON.stringify(faveObj)
-      
+      localStorage.favorited = JSON.stringify(faveObj);
     }
-    
-    
+
     axios
       .post("http://localhost:3001/savedRecipes", {
         name: recipeName,
         image: recipeImage,
-        id: id
+        localId: id,
       })
       .then((r) => {
         console.log("successful post from front end");
@@ -91,30 +79,27 @@ class Home extends React.Component {
     return (
       <div className="home">
         <div className="home-wrapper">
-        <h2>What do you want to cook today?</h2>
-        <RecipeForm searchForRecipe={this.searchForRecipe} />
-        <div>
-
-          
+          <h2>What do you want to cook today?</h2>
+          <RecipeForm searchForRecipe={this.searchForRecipe} />
+          <div></div>
+          <div className="card-container">
+            {this.state.recipes.length > 0 &&
+              this.state.recipes.map((recipe) => {
+                // console.log(recipe)
+                return (
+                  <RecipeItem
+                    key={recipe.id}
+                    name={recipe.title}
+                    image={recipe.image}
+                    handleSave={this.handleSave}
+                    id={recipe.id}
+                    favorited={recipe.favorited}
+                  />
+                );
+              })}
+          </div>
         </div>
-        <div className="card-container">
-          {this.state.recipes.length > 0 &&
-            this.state.recipes.map((recipe) => {
-              // console.log(recipe)
-              return (
-                <RecipeItem
-                  key={recipe.id}
-                  name={recipe.title}
-                  image={recipe.image}
-                  handleSave={this.handleSave}
-                  id={recipe.id}
-                  favorited={recipe.favorited}
-                />
-              );
-            })}
-        </div>
-        </div>
-        <Footer/>
+        <Footer />
       </div>
     );
   }

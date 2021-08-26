@@ -1,6 +1,6 @@
 import '../styles/card.css';
 
-function SavedRecipeItem({ name, image, id, handleDelete }) {
+function SavedRecipeItem({ name, image, localId, id, handleDelete }) {
   return (
   
 
@@ -13,7 +13,7 @@ function SavedRecipeItem({ name, image, id, handleDelete }) {
           <b>{name}</b>
         </h4>
         <button
-        onClick={() => handleDelete(id)}
+        onClick={() => handleDelete(id, localId)}
         >Delete</button>
       </div>
     </div>

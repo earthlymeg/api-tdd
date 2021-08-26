@@ -11,7 +11,8 @@ db.once('open', function() {
 //schema to save a recipe
 const recipeSchema = mongoose.Schema({
     name: String,
-    image: String
+    image: String,
+    localId: Number,
 })
 
 const RecipeToSave = mongoose.model('RecipeToSave', recipeSchema)

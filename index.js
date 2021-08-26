@@ -35,7 +35,8 @@ app.post('/savedRecipes', (req,res) => {
    //save recipes to database
    let newRecipe = new RecipeToSave({
       name: req.body.name,
-      image: req.body.image
+      image: req.body.image,
+      localId: req.body.localId
    })
 
    newRecipe.save((err,newRecipe) =>{
