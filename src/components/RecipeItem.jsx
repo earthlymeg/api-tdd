@@ -2,7 +2,8 @@ import "../styles/card.css";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 
 function RecipeItem({ name, image, handleSave, id, favorited }) {
-  //if item is clicked, this id === outline heart
+  
+  //on click of recipe item, take to recipe page that has back arrow to go back to all recipes 
 
   return (
     <div className="card">

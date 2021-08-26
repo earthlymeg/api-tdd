@@ -3,6 +3,8 @@
 import React from "react";
 import SavedRecipeItem from "./SavedRecipeItem";
 import axios from "axios";
+import Footer from './Footer'
+import '../styles/savedRecipes.css'
 import { Link } from
   "react-router-dom";
 class SavedRecipes extends React.Component {
@@ -49,7 +51,8 @@ class SavedRecipes extends React.Component {
   render() {
     return (
       <div>
-        <Link to="/home"><button>Home</button></Link>
+        <div className="saved-recipes-wrapper">
+
       <div className="card-container">
         {this.state.recipes.length > 0 &&
           this.state.recipes.map((recipe) => {
@@ -65,6 +68,8 @@ class SavedRecipes extends React.Component {
             );
           })}
       </div>
+      </div>
+      <Footer/>
       </div>
     );
   }
