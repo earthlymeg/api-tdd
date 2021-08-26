@@ -22,16 +22,18 @@ class SavedRecipes extends React.Component {
       .catch((err) => console.log(err));
   }
   handleDelete(id, localId) {
-     console.log('removing', id) 
-      let favorites = JSON.parse(localStorage.getItem('favorited'));
-      let filterdFaved = favorites.filter( (storageId) => {
-        return localId !== storageId
-      });
-      localStorage.setItem('favorited', JSON.stringify(filterdFaved))
-      // localStorage.favorited = JSON.stringify(filterdFaved);
+      if (localStorage.getItem('favorited')) {
+
+        let favorites = JSON.parse(localStorage.getItem('favorited'));
+        let filterdFaved = favorites.filter( (storageId) => {
+          return localId !== storageId
+        });
+        localStorage.setItem('favorited', JSON.stringify(filterdFaved))
+      }
+      
       
    
-      console.log('new storage', filterdFaved)
+      
     axios
       .delete(`http://localhost:3001/savedRecipes/${id}`)
       .then(() =>

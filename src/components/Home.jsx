@@ -10,12 +10,18 @@ class Home extends React.Component {
     super();
     this.state = {
       recipes: [],
+      
+      
     };
     this.searchForRecipe = this.searchForRecipe.bind(this);
     this.handleSave = this.handleSave.bind(this);
   }
 
+
+
   searchForRecipe(ingredient) {
+    
+    
     let storageFavorited = [];
     if (localStorage.getItem("favorited")) {
       storageFavorited = JSON.parse(localStorage.getItem("favorited"));
@@ -62,7 +68,15 @@ class Home extends React.Component {
       let faveObj = [id];
       localStorage.favorited = JSON.stringify(faveObj);
     }
-
+    let prevState = this.state.recipes;
+    //myArray.findIndex(x => x.id === '45');
+    let updateIndex = this.state.recipes.findIndex(x => x.id === id);
+    
+    prevState[updateIndex].favorited = true;
+    
+    
+    this.setState({recipes: prevState})
+    
     axios
       .post("http://localhost:3001/savedRecipes", {
         name: recipeName,
@@ -73,7 +87,9 @@ class Home extends React.Component {
         console.log("successful post from front end");
       })
       .catch((err) => console.log("err at front", err));
-  }
+  
+
+    }
 
   render() {
     return (
